@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio d'Augustin Beauvais, étudiant en BTS SIO au lycée Joseph-Marie Carriat de Bourg-en-Bresse.">
+    <meta name="theme-color" content="#ecebe6">
+    <title>Augustin Beauvais — Portfolio</title>
+
+    <script>
+        (function () {
+            var r = document.documentElement;
+            r.classList.add('js');
+            var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var seen = false;
+            try { seen = !!sessionStorage.getItem('robotSeen'); } catch (e) {}
+            if (!reduced && !seen) r.classList.add('loading');
+            setTimeout(function () {
+                if (!window.__portfolioReady) r.classList.remove('js', 'loading');
+            }, 12000);
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="veil" aria-hidden="true"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="bubble" aria-hidden="true"></div>
+<div id="cursor" aria-hidden="true"></div>
+<div id="curtain" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ============ DISCUSSION AVEC LE ROBOT ============ -->
+<button id="chat-launch" type="button" aria-label="Parler au robot"><i class="dot"></i>Parler au robot</button>
+
+<button id="robot-mode" type="button" aria-pressed="false">Robot : taille auto</button>
+
+<div id="lang-toast" hidden>
+    <span>¿Prefieres leer el portafolio en español?</span>
+    <button id="lt-yes" type="button">Sí, en español</button>
+    <button id="lt-no" type="button" aria-label="Cerrar">✕</button>
+</div>
+
+<div id="chat" role="dialog" aria-label="Discussion avec le robot" hidden>
+    <div class="chat-head">
+        <span><i class="live"></i>ROBOT-AB · en ligne</span>
+        <span class="chat-btns">
+            <button id="chat-voice" type="button" title="Activer ou couper la voix">Voix : off</button>
+            <button id="chat-close" type="button" aria-label="Fermer">✕</button>
+        </span>
+    </div>
+    <div id="chat-log" aria-live="polite"></div>
+    <div id="chat-chips"></div>
+    <form id="chat-form" autocomplete="off">
+        <input id="chat-input" type="text" placeholder="Pose ta question…" aria-label="Ta question">
+        <button type="submit" aria-label="Envoyer">↵</button>
+    </form>
+</div>
+
+<!-- ============ VISITE GUIDÉE ============ -->
+<div id="tour" role="dialog" aria-label="Visite guidée" hidden>
+    <div class="tour-head">
+        <span>VISITE GUIDÉE · <b id="tour-step">1/8</b></span>
+        <span class="chat-btns">
+            <button id="tour-voice" type="button" title="Activer ou couper la voix">Voix : off</button>
+            <button id="tour-stop" type="button" aria-label="Arrêter la visite">✕</button>
+        </span>
+    </div>
+    <p id="tour-text"></p>
+    <div class="tour-nav">
+        <button id="tour-prev" type="button">‹ Préc.</button>
+        <button id="tour-auto" type="button">Auto : on</button>
+        <button id="tour-next" type="button">Suiv. ›</button>
+    </div>
+</div>
+
+<!-- ============ CHARGEMENT / ÉVEIL DU ROBOT ============ -->
+    <div class="ld-mid"><span id="ld-count">0</span><span class="ld-pct">%</span></div>
+<div id="loader" aria-hidden="true">
+    <div class="ld-top"><span>Augustin Beauvais</span><span>Portfolio · BTS SIO</span></div>
+    <div class="ld-ask" id="ld-ask">Choisis ta langue · Elige tu idioma</div>
+    <button type="button" class="pick" data-pick="fr"><svg class="pflag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="cF"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#cF)"><rect width="12" height="36" fill="#2b4d9b"/><rect x="12" width="12" height="36" fill="#fff"/><rect x="24" width="12" height="36" fill="#d6382c"/></g></svg><b>Français</b><small>Choisir</small></button>
+    <button type="button" class="pick" data-pick="es"><svg class="pflag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="cE"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#cE)"><rect width="36" height="9" fill="#c8312b"/><rect y="9" width="36" height="18" fill="#f4c20d"/><rect y="27" width="36" height="9" fill="#c8312b"/></g></svg><b>Español</b><small>Elegir</small></button>
+    <div class="ld-bottom">
+        <span id="ld-text">Diagnostic en cours…</span>
+        <button id="skip" type="button">Passer ›</button>
+    </div>
+    <div class="ld-bar"><i></i></div>
+</div>
+
+<header class="site-header">
+    <a href="#accueil" class="logo">A.B</a>
+    <div class="langsw" role="group" aria-label="Langue / Idioma">
+        <button type="button" class="on" data-lang="fr" aria-pressed="true"><svg class="flag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="hF"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#hF)"><rect width="12" height="36" fill="#2b4d9b"/><rect x="12" width="12" height="36" fill="#fff"/><rect x="24" width="12" height="36" fill="#d6382c"/></g></svg><span>FR</span></button>
+        <button type="button" data-lang="es" aria-pressed="false"><svg class="flag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="hE"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#hE)"><rect width="36" height="9" fill="#c8312b"/><rect y="9" width="36" height="18" fill="#f4c20d"/><rect y="27" width="36" height="9" fill="#c8312b"/></g></svg><span>ES</span></button>
+    </div>
+    <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">Menu</button>
+    <nav id="menu">
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#veille">Veille</a>
+        <a href="#certifications">Certifs</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- ACCUEIL -->
+<section id="accueil" class="hero">
+    <div class="wrap">
+        <p class="tag" data-hero>( Portfolio · Épreuve E5 )</p>
+        <h1 class="h-title">
+            <span class="line"><span>Augustin</span></span>
+            <span class="line outline"><span>Beauvais</span></span>
+        </h1>
+        <p class="role" data-hero><span id="role"></span><span class="caret">_</span></p>
+        <p class="lead" data-hero>
+            Étudiant en BTS SIO option SISR, je construis, administre et sécurise des systèmes et des réseaux.
+            Voici mon parcours, mes compétences et mes réalisations.
+        </p>
+        <div class="hero-actions" data-hero>
+            <a class="btn" href="#projets">Voir mes projets</a>
+            <a class="btn btn-o" href="#contact">Me contacter</a>
+            <button class="btn btn-o" type="button" id="tour-start">Visite guidée ▶</button>
+        </div>
+        <div class="stats" data-hero>
+            <div><span class="num" data-count="3">0</span><span class="lbl">langues</span></div>
+            <div><span class="num" data-count="4">0</span><span class="lbl">stages</span></div>
+            <div><span class="num" data-count="6">0</span><span class="lbl">expériences</span></div>
+        </div>
+    </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+    <div class="track">
+        <span>Systèmes — Réseaux — Développement — Automatisation — IA — Systèmes — Réseaux — Développement — Automatisation — IA —&nbsp;</span>
+        <span>Systèmes — Réseaux — Développement — Automatisation — IA — Systèmes — Réseaux — Développement — Automatisation — IA —&nbsp;</span>
+    </div>
+</div>
+
+<main>
+
+<!-- À PROPOS -->
+<section id="apropos">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">01</span><h2>À propos</h2></div>
+        <div class="grid two">
+            <div class="reveal">
+                <p>
+                    Étudiant en <strong>BTS Services Informatiques aux Organisations, option SISR</strong>
+                    au lycée Joseph-Marie Carriat à Bourg-en-Bresse, je possède de solides bases en systèmes et réseaux
+                    et une bonne capacité à résoudre des problèmes techniques.
+                </p>
+                <p>
+                    J'ai effectué quatre stages : <strong>Groupe Brunet</strong>, <strong>LDLC</strong>, <strong>Acta Micro</strong>
+                    et <strong>Spanred Telecomunicaciones</strong>, une entreprise espagnole de télécommunications spécialisée dans les hôtels et les propriétés de luxe.
+                </p>
+                <p>
+                    Scolarisé en Espagne de 2014 à 2022, je suis bilingue français et espagnol. Sérieux, motivé et curieux,
+                    je m'investis pleinement dans les missions qui me sont confiées.
+                </p>
+                <p class="todo">Projet professionnel : à compléter (poursuite d'études, alternance, métier visé).</p>
+                <ul class="tags">
+                    <li>Français</li><li>Español</li><li>English</li>
+                    <li>Self-hosting</li><li>Domotique</li><li>Hardware</li><li>Randonnée</li>
+                </ul>
+            </div>
+            <div class="box reveal">
+                <h3>Parcours</h3>
+                <ul class="rows">
+                    <li><span class="r-k">2025 – 2027</span><span class="r-v">BTS SIO option SISR<br><small>Lycée Joseph-Marie Carriat, Bourg-en-Bresse</small></span></li>
+                    <li><span class="r-k">2022 – 2025</span><span class="r-v">Bac Pro Système Numérique (option RISC)<br><small>Bourg-en-Bresse</small></span></li>
+                    <li><span class="r-k">2014 – 2022</span><span class="r-v">Collège IES Miraya del Mar<br><small>Vélez-Málaga, Espagne</small></span></li>
+                    <li><span class="r-k">Ensuite</span><span class="r-v todo">Objectif à compléter</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">02</span><h2>Compétences</h2></div>
+        <div class="grid three">
+            <div class="box reveal">
+                <h3>Systèmes &amp; réseaux</h3>
+                <ul class="tags"><li>Réseaux</li><li>Windows Server</li><li>Active Directory</li><li>PowerShell</li><li>Wi-Fi UniFi</li><li>Baie de brassage</li></ul>
+            </div>
+            <div class="box reveal">
+                <h3>Virtualisation &amp; sauvegarde</h3>
+                <ul class="tags"><li>Oracle VirtualBox</li><li>Sauvegarde NAS</li></ul>
+            </div>
+            <div class="box reveal">
+                <h3>Assistance &amp; hardware</h3>
+                <ul class="tags"><li>Assistance technique</li><li>Dépannage</li><li>Réparation matérielle</li><li>Montage de PC</li></ul>
+            </div>
+            <div class="box reveal">
+                <h3>Programmation</h3>
+                <ul class="tags"><li>Scripts PowerShell</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Git / GitHub</li></ul>
+            </div>
+            <div class="box reveal">
+                <h3>Cybersécurité</h3>
+                <ul class="tags"><li>Sécurité Active Directory</li><li>Chiffrement de données</li><li>Sauvegardes</li></ul>
+            </div>
+            <div class="box reveal">
+                <h3>Langues &amp; savoir-être</h3>
+                <ul class="tags"><li>Espagnol C2 (bilingue)</li><li>Français C2 (bilingue)</li><li>Anglais B1</li><li>Sérieux</li><li>Motivé</li><li>Curieux</li><li>Permis B</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">03</span><h2>Expériences &amp; projets</h2></div>
+        <div class="grid three">
+
+            <article class="box project reveal">
+                <p class="p-num">P/01 · Stage</p>
+                <h3>Spanred Telecomunicaciones</h3>
+                <p>Outils internes et refonte web pour une entreprise de télécoms spécialisée dans l'hôtellerie de luxe.</p>
+                <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                <details>
+                    <summary>Voir le détail</summary>
+                    <dl>
+                        <dt>Contexte</dt><dd>Entreprise de télécommunications pour hôtels et propriétés de luxe.</dd>
+                        <dt>Objectifs</dt><dd class="todo">À compléter depuis le rapport de stage.</dd>
+                        <dt>Difficultés &amp; solutions</dt><dd class="todo">À compléter.</dd>
+                        <dt>Compétences</dt><dd>Travail en équipe, communication en espagnol, conception web, besoin client.</dd>
+                    </dl>
+                </details>
+            </article>
+
+            <article class="box project reveal">
+                <p class="p-num">P/02 · Stage</p>
+                <h3>Groupe Brunet</h3>
+                <p>Ambérieu-en-Bugey · du 13 janvier au 22 février 2025. Sauvegarde, scripts, sécurité Active Directory et réseau Wi-Fi.</p>
+                <ul class="tags"><li>NAS</li><li>PowerShell</li><li>Active Directory</li><li>UniFi</li><li>VirtualBox</li></ul>
+                <details>
+                    <summary>Voir le détail</summary>
+                    <dl>
+                        <dt>Missions</dt>
+                        <dd>Sauvegarde de fichiers (NAS), création de scripts PowerShell, installation de systèmes de sécurité sur Active Directory, montage et création d'un réseau Wi-Fi (UniFi), virtualisation (Oracle VirtualBox), montage d'une baie de brassage, chiffrement de données sensibles.</dd>
+                        <dt>Difficultés &amp; solutions</dt><dd class="todo">À compléter.</dd>
+                    </dl>
+                </details>
+            </article>
+
+            <article class="box project reveal">
+                <p class="p-num">P/03 · Stage</p>
+                <h3>Boutique / SAV LDLC</h3>
+                <p>Lyon Vaise · du 29 avril au 24 mai 2024. Accueil, dépannage et montage d'ordinateurs.</p>
+                <ul class="tags"><li>Hardware</li><li>SAV</li><li>Relation client</li></ul>
+                <details>
+                    <summary>Voir le détail</summary>
+                    <dl>
+                        <dt>Missions</dt>
+                        <dd>Accueil clientèle, dépannage et réparation matérielle, montage d'ordinateurs, gestion du stock.</dd>
+                    </dl>
+                </details>
+            </article>
+
+            <article class="box project reveal">
+                <p class="p-num">P/04 · Stage</p>
+                <h3>Acta Micro</h3>
+                <p>Bourg-en-Bresse · du 28 novembre au 25 décembre 2023. Aide à la clientèle et dépannage.</p>
+                <ul class="tags"><li>Dépannage</li><li>Relation client</li></ul>
+                <details>
+                    <summary>Voir le détail</summary>
+                    <dl>
+                        <dt>Missions</dt>
+                        <dd>Aide à la clientèle, dépannage d'ordinateurs portables, gestion de clients.</dd>
+                    </dl>
+                </details>
+            </article>
+
+            <article class="box project reveal">
+                <p class="p-num">P/05 · Cours</p>
+                <h3>Lab PowerShell &amp; Active Directory</h3>
+                <p>Automatisation de la gestion d'un annuaire Active Directory en environnement virtualisé.</p>
+                <ul class="tags"><li>Windows Server</li><li>Active Directory</li><li>PowerShell</li></ul>
+                <details>
+                    <summary>Voir le détail</summary>
+                    <dl>
+                        <dt>Contexte</dt><dd>Travaux pratiques d'administration Windows Server.</dd>
+                        <dt>Objectifs</dt><dd class="todo">À préciser.</dd>
+                        <dt>Difficultés &amp; solutions</dt><dd class="todo">À compléter.</dd>
+                        <dt>Compétences</dt><dd>Scripting, gestion des utilisateurs et des groupes, administration système.</dd>
+                    </dl>
+                </details>
+            </article>
+
+            <article class="box project reveal">
+                <p class="p-num">P/06 · Perso</p>
+                <h3>Accès connectés &amp; domotique</h3>
+                <p>Gestion de serrures connectées sur un ensemble de logements : configuration, droits d'accès, dépannage.</p>
+                <ul class="tags"><li>TTLock</li><li>INTHER-ACCESS</li></ul>
+                <details>
+                    <summary>Voir le détail</summary>
+                    <dl>
+                        <dt>Contexte</dt><dd>Parc de logements équipé de serrures connectées.</dd>
+                        <dt>Objectifs</dt><dd class="todo">À compléter.</dd>
+                        <dt>Compétences</dt><dd>Configuration, dépannage, gestion des accès.</dd>
+                    </dl>
+                </details>
+            </article>
+
+        </div>
+        <p class="todo reveal">Ajoute des captures d'écran dans <code>assets/</code> et un lien GitHub pour chaque projet.</p>
+    </div>
+</section>
+
+<!-- VEILLE -->
+<section id="veille">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">04</span><h2>Veille techno</h2></div>
+        <div class="grid two">
+            <div class="box reveal">
+                <h3>Thème &amp; outils</h3>
+                <p class="todo">Thème de ma veille : à compléter (cybersécurité, IA, self-hosting…).</p>
+                <ul class="tags"><li>Flux RSS</li><li>Alertes Google</li><li>ANSSI</li><li>CERT-FR</li><li>LeMagIT</li></ul>
+            </div>
+            <div class="box reveal">
+                <h3>Synthèses &amp; articles</h3>
+                <ul class="links">
+                    <li><a href="#">Synthèse n°1 — titre à compléter →</a></li>
+                    <li><a href="#">Synthèse n°2 — titre à compléter →</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">05</span><h2>Certifications</h2></div>
+        <div class="grid three">
+            <div class="box reveal"><h3>Pix</h3><p class="todo">Niveau à compléter</p><a href="#">Lien de validation →</a></div>
+            <div class="box reveal"><h3>SecNumacadémie</h3><p class="todo">À compléter</p><a href="#">Lien de validation →</a></div>
+            <div class="box reveal"><h3>Cisco / Microsoft</h3><p class="todo">À compléter</p><a href="#">Lien de validation →</a></div>
+        </div>
+        <p class="todo reveal">Supprime les cartes des certifications que tu n'as pas.</p>
+    </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">06</span><h2>CV</h2></div>
+        <div class="box cv-box reveal">
+            <p>Télécharge mon CV au format PDF.</p>
+            <a class="btn" href="docs/cv-augustin-beauvais.pdf" download>Télécharger le CV ↓</a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="wrap">
+        <div class="sec-head reveal"><span class="sec-num">07</span><h2>Contact</h2></div>
+        <a class="mail reveal" href="mailto:augustin1304.professionnel@gmail.com">augustin1304.professionnel@gmail.com →</a>
+        <div class="grid two">
+            <div class="box reveal">
+                <h3>Réseaux</h3>
+                <ul class="links">
+                    <li>LinkedIn : <a href="https://www.linkedin.com/in/augustin-beauvais/" target="_blank" rel="noopener">linkedin.com/in/augustin-beauvais</a></li>
+                    <li>Localisation : Bourg-en-Bresse (01000)</li>
+                    <li>GitHub : <a href="https://github.com/Aguss1v" target="_blank" rel="noopener">github.com/Aguss1v</a></li>
+                </ul>
+            </div>
+            <form class="box reveal" action="mailto:augustin1304.professionnel@gmail.com" method="post" enctype="text/plain">
+                <label>Nom <input type="text" name="nom" required></label>
+                <label>E-mail <input type="email" name="email" required></label>
+                <label>Message <textarea name="message" rows="4" required></textarea></label>
+                <button class="btn" type="submit">Envoyer →</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="wrap foot">
+        <span>© <span id="year"></span> Augustin Beauvais</span>
+        <span>Portfolio BTS SIO · <button id="replay" type="button">Réveiller le robot</button></span>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="lang.js"></script>
+<script src="globe.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
