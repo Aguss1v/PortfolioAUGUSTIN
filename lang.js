@@ -312,7 +312,9 @@ I18N.domEs = {
     '88 %': '88 %', '84 %': '84 %', '92 %': '92 %',
     'Panorama de la SSI': 'Panorama de la seguridad de la información', "Sécurité de l'authentification": 'Seguridad de la autenticación',
     'Sécurité sur Internet': 'Seguridad en Internet', 'Sécurité du poste de travail et nomadisme': 'Seguridad del puesto de trabajo y nomadismo',
-    "Voir l'attestation →": 'Ver el certificado →'
+    "Voir l'attestation →": 'Ver el certificado →',
+    'Je construis, administre et sécurise des systèmes et des réseaux. Voici mon parcours, mes compétences et mes réalisations.': 'Construyo, administro y protejo sistemas y redes. Aquí tienes mi trayectoria, mis competencias y mis realizaciones.',
+    "M'écrire": 'Escribirme'
 };
 I18N.attrEs = {
     'Portfolio d\'Augustin Beauvais, étudiant en BTS SIO au lycée Joseph-Marie Carriat de Bourg-en-Bresse.': 'Portafolio de Augustin Beauvais, estudiante de BTS SIO en el liceo Joseph-Marie Carriat de Bourg-en-Bresse.',

@@ -557,8 +557,8 @@ if (renderer) {
         const secScale = lerp(roomy ? fullS : miniS, miniS, miniK);
         const dockX = (isMobile ? 1 : sideSm) * (halfW - Math.max(marginW / 2, 0.8));
         const dockY = isMobile ? halfH * 0.74 : lerp(roomy ? 0.3 : halfH * 0.42, halfH * 0.42, miniK);
-        const heroX = isMobile ? 0 : halfW * 0.45, heroY = isMobile ? 3.4 : 0.3;
-        const scale = lerp(lerp(secScale, isMobile ? 0.5 : 0.88, hero), isMobile ? 0.3 : 0.42, tourK);
+        const heroX = isMobile ? 0 : halfW * 0.45, heroY = isMobile ? 4.6 : 0.3;
+        const scale = lerp(lerp(secScale, isMobile ? 0.4 : 0.88, hero), isMobile ? 0.3 : 0.42, tourK);
         const nx = lerp(lerp(dockX, heroX, hero), halfW - (isMobile ? 1.0 : 1.9), tourK);
         const ny = lerp(lerp(dockY, heroY, hero), halfH * (isMobile ? 0.5 : 0.36), tourK);
         const nry = -0.45 * Math.tanh(nx / 3);
@@ -775,7 +775,7 @@ if (hasGsap && canHover) {
     gsap.set(cursor, { xPercent: -50, yPercent: -50 });
     const cx = gsap.quickTo(cursor, 'x', { duration: 0.2, ease: 'power3' });
     const cy = gsap.quickTo(cursor, 'y', { duration: 0.2, ease: 'power3' });
-    addEventListener('pointermove', e => { cx(e.clientX); cy(e.clientY); });
+    addEventListener('pointermove', e => { cx(e.clientX); cy(e.clientY); cursor.classList.add('on'); });
     document.addEventListener('mouseover', e => {
         overInteractive = !!e.target.closest('a, button, summary, .box, input, textarea, label');
         updateCursor();
@@ -1326,6 +1326,9 @@ const modeBtn = $('#robot-mode');
 function updMode() {
     modeBtn.textContent = drag.pinned ? UI.modeReset : (robotMini ? UI.modeMini : UI.modeAuto);
     modeBtn.setAttribute('aria-pressed', !drag.pinned && robotMini);
+    // Rangé dans l'en-tête du chat ; flottant seulement quand il faut replacer le robot
+    const home = drag.pinned ? document.body : $('#chat .chat-btns');
+    if (modeBtn.parentNode !== home) home.insertBefore(modeBtn, drag.pinned ? null : home.firstChild);
 }
 if (!renderer) modeBtn.hidden = true;
 modeBtn.addEventListener('click', () => {

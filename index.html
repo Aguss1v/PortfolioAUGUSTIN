@@ -2,15 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-MViDuT4p8roZOl+QrfRgUvSaxHzpE962itA6onWblqs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio d'Augustin Beauvais, étudiant en BTS SIO au lycée Joseph-Marie Carriat de Bourg-en-Bresse.">
-    <meta name="theme-color" content="#ecebe6">
+    <meta name="theme-color" content="#f5f5f7">
     <title>Augustin Beauvais — Portfolio</title>
 
     <script>
         (function () {
             var r = document.documentElement;
             r.classList.add('js');
+            // En local (double-clic ou localhost), les contenus « à compléter » restent visibles
+            if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) r.classList.add('dev');
             var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var seen = false;
             try { seen = !!sessionStorage.getItem('robotSeen'); } catch (e) {}
@@ -21,9 +24,6 @@
         })();
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -110,14 +110,14 @@
 <!-- ACCUEIL -->
 <section id="accueil" class="hero">
     <div class="wrap">
-        <p class="tag" data-hero>( Portfolio · Épreuve E5 )</p>
+        <p class="tag" data-hero>Portfolio · Épreuve E5</p>
         <h1 class="h-title">
             <span class="line"><span>Augustin</span></span>
             <span class="line outline"><span>Beauvais</span></span>
         </h1>
         <p class="role" data-hero><span id="role"></span><span class="caret">_</span></p>
         <p class="lead" data-hero>
-            Étudiant en BTS SIO option SISR, je construis, administre et sécurise des systèmes et des réseaux.
+            Je construis, administre et sécurise des systèmes et des réseaux.
             Voici mon parcours, mes compétences et mes réalisations.
         </p>
         <div class="hero-actions" data-hero>
@@ -371,7 +371,7 @@
                 <p class="todo">Thème de ma veille : à compléter (cybersécurité, IA, self-hosting…).</p>
                 <ul class="tags"><li>Flux RSS</li><li>Alertes Google</li><li>ANSSI</li><li>CERT-FR</li><li>LeMagIT</li></ul>
             </div>
-            <div class="box reveal">
+            <div class="box reveal todo-card">
                 <h3>Synthèses &amp; articles</h3>
                 <ul class="links">
                     <li><a href="#">Synthèse n°1 — titre à compléter →</a></li>
@@ -387,7 +387,7 @@
     <div class="wrap">
         <div class="sec-head reveal"><span class="sec-num">05</span><h2>Certifications</h2></div>
         <div class="grid three">
-            <div class="box reveal"><h3>Pix</h3><p class="todo">Niveau à compléter</p><a href="#">Lien de validation →</a></div>
+            <div class="box reveal todo-card"><h3>Pix</h3><p class="todo">Niveau à compléter</p><a href="#">Lien de validation →</a></div>
             <div class="box reveal">
                 <h3>SecNumacadémie</h3>
                 <p>MOOC de l'ANSSI, 4 modules validés le 27 janvier 2025.</p>
@@ -399,7 +399,7 @@
                 </ul>
                 <a href="docs/attestation-secnumacademie.pdf" target="_blank" rel="noopener">Voir l'attestation →</a>
             </div>
-            <div class="box reveal"><h3>Cisco / Microsoft</h3><p class="todo">À compléter</p><a href="#">Lien de validation →</a></div>
+            <div class="box reveal todo-card"><h3>Cisco / Microsoft</h3><p class="todo">À compléter</p><a href="#">Lien de validation →</a></div>
         </div>
         <p class="todo reveal">Supprime les cartes des certifications que tu n'as pas.</p>
     </div>
@@ -421,21 +421,13 @@
     <div class="wrap">
         <div class="sec-head reveal"><span class="sec-num">07</span><h2>Contact</h2></div>
         <a class="mail reveal" href="mailto:augustin1304.professionnel@gmail.com">augustin1304.professionnel@gmail.com →</a>
-        <div class="grid two">
-            <div class="box reveal">
-                <h3>Réseaux</h3>
-                <ul class="links">
-                    <li>LinkedIn : <a href="https://www.linkedin.com/in/augustin-beauvais/" target="_blank" rel="noopener">linkedin.com/in/augustin-beauvais</a></li>
-                    <li>Localisation : Bourg-en-Bresse (01000)</li>
-                    <li>GitHub : <a href="https://github.com/Aguss1v" target="_blank" rel="noopener">github.com/Aguss1v</a></li>
-                </ul>
-            </div>
-            <form class="box reveal" action="mailto:augustin1304.professionnel@gmail.com" method="post" enctype="text/plain">
-                <label>Nom <input type="text" name="nom" required></label>
-                <label>E-mail <input type="email" name="email" required></label>
-                <label>Message <textarea name="message" rows="4" required></textarea></label>
-                <button class="btn" type="submit">Envoyer →</button>
-            </form>
+        <div class="box reveal contact-box">
+            <ul class="links">
+                <li>LinkedIn : <a href="https://www.linkedin.com/in/augustin-beauvais/" target="_blank" rel="noopener">linkedin.com/in/augustin-beauvais</a></li>
+                <li>GitHub : <a href="https://github.com/Aguss1v" target="_blank" rel="noopener">github.com/Aguss1v</a></li>
+                <li>Localisation : Bourg-en-Bresse (01000)</li>
+            </ul>
+            <a class="btn" href="mailto:augustin1304.professionnel@gmail.com">M'écrire</a>
         </div>
     </div>
 </section>
@@ -449,9 +441,9 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/three.min.js"></script>
 <script src="lang.js"></script>
 <script src="globe.js"></script>
 <script src="main.js"></script>
