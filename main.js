@@ -893,7 +893,7 @@ function typeInto(el, text, onTick, done) {
 }
 
 /* ===================== Discussion ===================== */
-const chat = $('#chat'), log = $('#chat-log'), chipsBox = $('#chat-chips'), form = $('#chat-form'), input = $('#chat-input'), launch = $('#chat-launch');
+const chat = $('#chat'), log = $('#chat-log'), chipsBox = $('#chat-chips'), launch = $('#chat-launch');
 let greeted = false;
 
 function findAnswer(q) {
@@ -976,7 +976,6 @@ function openChat() {
         addMsg('bot', UI.chatHello);
         robotTalk(2500);
     }
-    if (canHover) setTimeout(() => input.focus(), 50);
 }
 function closeChat() {
     chat.hidden = true;
@@ -986,7 +985,6 @@ function closeChat() {
 }
 launch.addEventListener('click', openChat);
 $('#chat-close').addEventListener('click', closeChat);
-form.addEventListener('submit', e => { e.preventDefault(); ask(input.value); input.value = ''; });
 log.addEventListener('click', e => {
     const a = e.target.closest('a');
     if (a && matchMedia('(max-width: 860px)').matches) closeChat();
