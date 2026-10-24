@@ -582,8 +582,9 @@ if (renderer) {
         const wk = state.work;
         const stacked = camera.aspect < 1.15;
         const wx = 0;
-        const wy = (stacked ? 0.9 : -0.1) - (1 - state.intro) * 0.9;
-        const ws = (stacked ? 0.95 : Math.min(1.3, halfH / 5.9)) * (0.86 + 0.14 * state.intro);
+        // Un peu plus haut et plus petit qu'avant : la barre et le choix de langue tiennent dessous
+        const wy = (stacked ? 1.6 : 1.0) - (1 - state.intro) * 0.9;
+        const ws = (stacked ? 0.85 : Math.min(1.1, halfH / 6.9)) * (0.86 + 0.14 * state.intro);
         const wry = 0.12;
         const x = Math.max(-halfW + 0.7, Math.min(halfW - 0.7, lerp(lerp(nx, wx, wk), drag.x, pinK * dk)));
         const y = Math.max(-halfH + 1.2, Math.min(halfH - 1.2, lerp(lerp(ny, wy, wk), drag.y, pinK * dk)));
@@ -1173,7 +1174,11 @@ function runLoader() {
         sel = l; markSel();
         root.classList.add('ld-choosing');
         playOrbit(l, {
-            atStart: () => { gsap.to('#loader, .ld-mid', { opacity: 0, duration: 0.45 }); },
+            atStart: () => {
+                gsap.to('#loader', { opacity: 0, duration: 0.45 });
+                // L'écran clair passe au noir : l'orbite se joue dans l'espace
+                gsap.to('#curtain', { backgroundColor: '#0b0b0d', duration: 0.7, ease: 'power2.inOut' });
+            },
             onMid: () => applyLang(l),
             atEnd: () => {
                 gsap.to('#curtain', { yPercent: -100, duration: 0.9, ease: 'power4.inOut', onComplete: endLoader });

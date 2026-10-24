@@ -76,17 +76,23 @@
 </div>
 
 <!-- ============ CHARGEMENT / ÉVEIL DU ROBOT ============ -->
-    <div class="ld-mid"><span id="ld-count">0</span><span class="ld-pct">%</span></div>
 <div id="loader" aria-hidden="true">
-    <div class="ld-top"><span>Augustin Beauvais</span><span>Portfolio · BTS SIO</span></div>
-    <div class="ld-ask" id="ld-ask">Choisis ta langue · Elige tu idioma</div>
-    <button type="button" class="pick" data-pick="fr"><svg class="pflag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="cF"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#cF)"><rect width="12" height="36" fill="#2b4d9b"/><rect x="12" width="12" height="36" fill="#fff"/><rect x="24" width="12" height="36" fill="#d6382c"/></g></svg><b>Français</b><small>Choisir</small></button>
-    <button type="button" class="pick" data-pick="es"><svg class="pflag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="cE"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#cE)"><rect width="36" height="9" fill="#c8312b"/><rect y="9" width="36" height="18" fill="#f4c20d"/><rect y="27" width="36" height="9" fill="#c8312b"/></g></svg><b>Español</b><small>Elegir</small></button>
-    <div class="ld-bottom">
-        <span id="ld-text">Diagnostic en cours…</span>
-        <button id="skip" type="button">Passer ›</button>
+    <div class="ld-top"><span class="ld-logo">A.B</span><span>Portfolio · BTS SIO</span></div>
+    <div class="ld-dock">
+        <div class="ld-run">
+            <div class="ld-prog"><div class="ld-bar"><i></i></div><span class="ld-mid"><span id="ld-count">0</span><span class="ld-pct">%</span></span></div>
+            <span id="ld-text">Diagnostic en cours…</span>
+        </div>
+        <div class="ld-choice">
+            <div class="ld-picks">
+                <button type="button" class="pick" data-pick="fr"><svg class="pflag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="cF"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#cF)"><rect width="12" height="36" fill="#2b4d9b"/><rect x="12" width="12" height="36" fill="#fff"/><rect x="24" width="12" height="36" fill="#d6382c"/></g></svg><b>Français</b></button>
+                <button type="button" class="pick" data-pick="es"><svg class="pflag" viewBox="0 0 36 36" aria-hidden="true"><defs><clipPath id="cE"><circle cx="18" cy="18" r="18"/></clipPath></defs><g clip-path="url(#cE)"><rect width="36" height="9" fill="#c8312b"/><rect y="9" width="36" height="18" fill="#f4c20d"/><rect y="27" width="36" height="9" fill="#c8312b"/></g></svg><b>Español</b></button>
+            </div>
+            <div class="ld-ask" id="ld-ask">Choisis ta langue · Elige tu idioma</div>
+        </div>
     </div>
-    <div class="ld-bar"><i></i></div>
+    <button id="skip" type="button">Passer ›</button>
+</div>
 </div>
 
 <header class="site-header">
