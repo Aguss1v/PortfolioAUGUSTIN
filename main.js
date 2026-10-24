@@ -1175,7 +1175,7 @@ function runLoader() {
         root.classList.add('ld-choosing');
         playOrbit(l, {
             atStart: () => {
-                gsap.to('#loader', { opacity: 0, duration: 0.45 });
+                gsap.to('#loader, .ld-mid', { opacity: 0, duration: 0.45 });
                 // L'écran clair passe au noir : l'orbite se joue dans l'espace
                 gsap.to('#curtain', { backgroundColor: '#0b0b0d', duration: 0.7, ease: 'power2.inOut' });
             },

@@ -305,8 +305,11 @@ html.loading .site-header, html.loading main, html.loading footer { visibility: 
 .ld-prog { display: flex; align-items: center; gap: 0.9rem; }
 .ld-bar { width: min(240px, 52vw); height: 4px; border-radius: 4px; overflow: hidden; background: rgba(0, 0, 0, 0.08); }
 .ld-bar i { display: block; height: 100%; border-radius: 4px; background: var(--ink); transform-origin: left; transform: scaleX(0); }
-.ld-mid { display: flex; align-items: baseline; min-width: 3.4em; font-size: 0.95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-.ld-pct { margin-left: 0.12rem; font-weight: 500; color: var(--muted); }
+/* Gros pourcentage derrière le robot (entre le rideau et le canvas) */
+.ld-mid { display: none; position: fixed; left: 50%; top: 43%; transform: translate(-50%, -50%); z-index: -1; align-items: baseline; pointer-events: none; font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; color: #d8d8de; font-variant-numeric: tabular-nums; }
+html.loading .ld-mid { display: flex; }
+#ld-count { font-size: clamp(10rem, 44vw, 30rem); }
+.ld-pct { margin-left: 0.3rem; font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 600; letter-spacing: 0; color: rgba(255, 90, 31, 0.5); }
 #ld-text { font-size: 0.9rem; color: var(--muted); }
 
 .ld-choice { opacity: 0; transform: translateY(12px); pointer-events: none; }
@@ -314,16 +317,27 @@ html.ld-ready .ld-run { opacity: 0; transform: translateY(-12px); }
 html.ld-ready .ld-choice { opacity: 1; transform: none; pointer-events: auto; }
 html.ld-choosing .ld-choice { pointer-events: none; }
 .ld-picks { display: flex; gap: 0.75rem; }
+/* Pastilles de langue : halo à la couleur du drapeau, apparition floutée, survol qui s'illumine */
 .pick {
+    --glow: 255, 90, 31;
     display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.5rem 1.3rem 0.5rem 0.5rem; cursor: pointer;
     background: #fff; color: var(--ink); border: 0; border-radius: 999px; font: 600 1rem var(--sf); letter-spacing: -0.01em;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--line);
-    transition: transform 0.25s cubic-bezier(.2, .8, .2, 1), box-shadow 0.25s;
+    box-shadow: 0 0 0 1px var(--line), 0 6px 18px rgba(var(--glow), 0.16), 0 0 30px rgba(var(--glow), 0.12);
+    transition: transform 0.45s cubic-bezier(.2, .8, .2, 1), box-shadow 0.45s;
 }
-.pick .pflag { width: 34px; height: 34px; display: block; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); }
-.pick:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--line); }
-.pick.sel { box-shadow: 0 0 0 2px var(--acc), 0 10px 24px rgba(255, 90, 31, 0.18); animation: pickPulse 1.8s ease-in-out infinite; }
-@keyframes pickPulse { 50% { box-shadow: 0 0 0 2px var(--acc), 0 0 0 8px rgba(255, 90, 31, 0.14); } }
+.pick[data-pick="fr"] { --glow: 43, 92, 210; }
+.pick[data-pick="es"] { --glow: 232, 62, 40; }
+.pick .pflag { width: 34px; height: 34px; display: block; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); transition: transform 0.6s cubic-bezier(.2, .8, .2, 1); }
+.pick:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 0 0 1px var(--line), 0 14px 30px rgba(var(--glow), 0.28), 0 0 48px rgba(var(--glow), 0.32); }
+.pick:hover .pflag { transform: scale(1.1) rotate(-10deg); }
+.pick:active { transform: scale(0.97); transition-duration: 0.12s; }
+.pick.sel { box-shadow: 0 0 0 2px rgba(var(--glow), 0.9), 0 10px 28px rgba(var(--glow), 0.3), 0 0 48px rgba(var(--glow), 0.3); }
+html.ld-ready .pick { animation: pickIn 0.9s cubic-bezier(.2, .8, .2, 1) backwards; }
+html.ld-ready .pick.sel { animation: pickIn 0.9s cubic-bezier(.2, .8, .2, 1) backwards, pickGlow 2.6s ease-in-out 1s infinite; }
+html.ld-ready .pick + .pick { animation-delay: 0.12s, 1.12s; }
+html.ld-choosing .pick.sel { transform: scale(1.06); }
+@keyframes pickIn { from { opacity: 0; transform: translateY(16px) scale(0.92); filter: blur(10px); } }
+@keyframes pickGlow { 50% { box-shadow: 0 0 0 2px rgba(var(--glow), 0.9), 0 12px 34px rgba(var(--glow), 0.4), 0 0 72px rgba(var(--glow), 0.45); } }
 .ld-ask { font-size: 0.9rem; color: var(--muted); }
 
 #skip { position: absolute; right: 5%; bottom: 1.3rem; pointer-events: auto; cursor: pointer; background: rgba(0, 0, 0, 0.05); border: 0; border-radius: 999px; color: var(--ink); font: 500 0.85rem var(--sf); padding: 0.5rem 1rem; transition: background 0.2s; }
@@ -332,6 +346,7 @@ html.ld-ready #skip { visibility: hidden; }
 
 @media (max-width: 860px) {
     .ld-dock { bottom: 4.6rem; }
+    .ld-mid { top: 40%; }
     .pick { font-size: 0.95rem; padding-right: 1.1rem; }
     .pick .pflag { width: 30px; height: 30px; }
 }
