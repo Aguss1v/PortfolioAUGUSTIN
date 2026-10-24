@@ -1069,7 +1069,7 @@ toggle.addEventListener('click', () => {
 });
 menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 
-const SIDES = { apropos: 1, competences: -1, projets: 1, veille: -1, certifications: 1, cv: -1, contact: 1 };
+const SIDES = { apropos: 1, competences: -1, stages: 1, projets: -1, veille: 1, certifications: -1, cv: 1, contact: -1 };
 let lastSection = '';
 const spy = new IntersectionObserver(entries => {
     entries.forEach(en => {

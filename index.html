@@ -61,7 +61,7 @@
 <!-- ============ VISITE GUIDÉE ============ -->
 <div id="tour" role="dialog" aria-label="Visite guidée" hidden>
     <div class="tour-head">
-        <span>VISITE GUIDÉE · <b id="tour-step">1/8</b></span>
+        <span>VISITE GUIDÉE · <b id="tour-step">1/9</b></span>
         <span class="chat-btns">
             <button id="tour-voice" type="button" title="Activer ou couper la voix">Voix : off</button>
             <button id="tour-stop" type="button" aria-label="Arrêter la visite">✕</button>
@@ -106,6 +106,7 @@
     <nav id="menu">
         <a href="#apropos">À propos</a>
         <a href="#competences">Compétences</a>
+        <a href="#stages">Stages</a>
         <a href="#projets">Projets</a>
         <a href="#veille">Veille</a>
         <a href="#certifications">Certifs</a>
@@ -128,7 +129,7 @@
             Voici mon parcours, mes compétences et mes réalisations.
         </p>
         <div class="hero-actions" data-hero>
-            <a class="btn" href="#projets">Voir mes projets</a>
+            <a class="btn" href="#stages">Voir mes stages</a>
             <a class="btn btn-o" href="#contact">Me contacter</a>
             <button class="btn btn-o" type="button" id="tour-start">Visite guidée ▶</button>
         </div>
@@ -214,120 +215,134 @@
     </div>
 </section>
 
+<!-- STAGES -->
+<section id="stages">
+    <div class="wrap">
+        <div class="sec-head reveal"><h2>Stages</h2></div>
+        <ol class="timeline">
+            <li class="tl-item reveal">
+                <span class="tl-date">2025</span>
+                <article class="box project">
+                    <h3>Groupe Brunet</h3>
+                    <p>Ambérieu-en-Bugey · du 13 janvier au 22 février 2025. Sauvegarde, scripts, sécurité Active Directory et réseau Wi-Fi.</p>
+                    <ul class="tags"><li>NAS</li><li>PowerShell</li><li>Active Directory</li><li>Debian</li><li>UniFi</li><li>VirtualBox</li></ul>
+                    <details>
+                        <summary>Voir le détail</summary>
+                        <dl>
+                            <dt>Contexte</dt>
+                            <dd>Groupe d'aménagement durable (17 filiales, environ 1 000 collaborateurs). Stage au siège, qui déménageait dans de nouveaux locaux.</dd>
+                            <dt>Missions</dt>
+                            <dd>Support quotidien des salariés (imprimantes, mots de passe oubliés). Sauvegarde hebdomadaire des fichiers sur NAS. Serveur Debian avec Samba4 pour le partage de fichiers. Machines virtuelles Kali Linux pour des tests de sécurité. Pilotes du serveur d'impression pour mettre les imprimantes en réseau. Configuration de portables et intégration au domaine. Déploiement de LAPS par GPO dans Active Directory.</dd>
+                            <dt>Scripts PowerShell</dt>
+                            <dd>Récupération de tous les groupes d'utilisateurs de l'Active Directory. Export en CSV des boîtes aux lettres Microsoft 365 : adresses principale et secondaires, nom d'utilisateur, capacité maximale.</dd>
+                            <dt>Problématique</dt>
+                            <dd>Avec le déménagement, il fallait une nouvelle infrastructure réseau : mal conçue, elle aurait bloqué l'activité de l'entreprise.</dd>
+                            <dt>Solution</dt>
+                            <dd>Montage de la baie de brassage (switchs, serveurs, NAS, pare-feu, onduleur, câblage structuré). Installation d'un routeur UniFi Dream Machine Pro et de deux bornes Wi-Fi U7 alimentées en PoE, adoptées depuis le tableau de bord. Création de deux Wi-Fi : un réseau professionnel pour les salariés et un réseau invité avec isolation des clients, limité à Internet.</dd>
+                            <dt>Compétences</dt>
+                            <dd>Administration Windows et Linux, Active Directory, scripting, réseau, sécurité.</dd>
+                        </dl>
+                    </details>
+                </article>
+            </li>
+            <li class="tl-item reveal">
+                <span class="tl-date">2024</span>
+                <article class="box project">
+                    <h3>Boutique / SAV LDLC</h3>
+                    <p>Lyon Vaise · du 29 avril au 24 mai 2024. Accueil, dépannage et montage d'ordinateurs.</p>
+                    <ul class="tags"><li>Hardware</li><li>Watercooling</li><li>SAV</li><li>Relation client</li></ul>
+                    <details>
+                        <summary>Voir le détail</summary>
+                        <dl>
+                            <dt>Contexte</dt>
+                            <dd>Boutique LDLC de Lyon Vaise : vente, service après-vente et atelier de montage de PC sur mesure.</dd>
+                            <dt>Missions</dt>
+                            <dd>Accueil clientèle et conseil en vente, gestion du stock. Montage de nombreux PC, dont des PC gamer avec watercooling. Configuration du BIOS / UEFI et installation de Windows. Au SAV : changement d'alimentations, ajout de RAM, passage HDD vers SSD, vidange d'un watercooling custom, nettoyage.</dd>
+                            <dt>Problématique</dt>
+                            <dd>Monter un PC gamer à 5 000 € commandé sur LDLC.com. Contraintes : des composants fragiles, et un client qui voulait conserver tous les emballages.</dd>
+                            <dt>Solution</dt>
+                            <dd>Choix des outils, puis montage dans l'ordre : processeur, RAM, SSD NVMe, pompe du watercooling, carte mère ATX dans le boîtier, radiateur et ventilateurs, alimentation modulaire et câblage, RGB, carte graphique. Test de démarrage, sans installer Windows à la demande du client.</dd>
+                            <dt>Compétences</dt>
+                            <dd>Assemblage, rigueur, respect de la demande client.</dd>
+                        </dl>
+                    </details>
+                </article>
+            </li>
+            <li class="tl-item reveal">
+                <span class="tl-date">2023</span>
+                <article class="box project">
+                    <h3>Acta Micro</h3>
+                    <p>Bourg-en-Bresse · du 28 novembre au 25 décembre 2023. Aide à la clientèle et dépannage.</p>
+                    <ul class="tags"><li>Dépannage</li><li>SSD</li><li>Relation client</li></ul>
+                    <details>
+                        <summary>Voir le détail</summary>
+                        <dl>
+                            <dt>Contexte</dt>
+                            <dd>Entreprise familiale de réparation d'ordinateurs, de téléphones et d'imprimantes, créée en 2001.</dd>
+                            <dt>Missions</dt>
+                            <dd>Aide à la clientèle et gestion de clients. Réparation de disques durs, désinfection d'un portable, mises à jour des pilotes et de Windows. Passage de HDD vers SSD avec clonage des données. Jusqu'à trois pannes gérées en même temps.</dd>
+                            <dt>Problématique</dt>
+                            <dd>Un ordinateur portable ne s'allumait plus après avoir reçu de l'eau sur le pavé numérique.</dd>
+                            <dt>Solution</dt>
+                            <dd>Démontage et diagnostic : la carte du bouton d'allumage était oxydée. Bain à ultrasons dans l'eau déminéralisée, puis dans l'alcool. Test avec le minimum de composants, puis remontage complet : le PC fonctionne.</dd>
+                            <dt>Compétences</dt>
+                            <dd>Diagnostic, méthode, autonomie : en fin de stage, réparation d'un PC sans aide.</dd>
+                        </dl>
+                    </details>
+                </article>
+            </li>
+            <li class="tl-item reveal">
+                <span class="tl-date">2023</span>
+                <article class="box project">
+                    <h3>Les Indispensables</h3>
+                    <p>Bourg-en-Bresse · du 20 mars au 7 avril 2023. Accueil, dépannage à domicile et réparation.</p>
+                    <ul class="tags"><li>Dépannage</li><li>Hardware</li><li>Relation client</li></ul>
+                    <details>
+                        <summary>Voir le détail</summary>
+                        <dl>
+                            <dt>Contexte</dt>
+                            <dd>Vente, réparation et dépannage informatique pour les particuliers et les professionnels.</dd>
+                            <dt>Missions</dt>
+                            <dd>Accueil et conseil en magasin. Interventions à domicile : installation d'ordinateurs et de périphériques. Diagnostic et réparation de pannes matérielles et logicielles.</dd>
+                            <dt>Problématique</dt>
+                            <dd>Une Xbox surchauffait : traces d'oxydation et manque de pâte thermique sur le processeur.</dd>
+                            <dt>Solution</dt>
+                            <dd>Démontage, nettoyage des zones oxydées, nouvelle pâte thermique. Tests de performance et vérification des ventilateurs : la console est rendue en état de marche.</dd>
+                            <dt>Compétences</dt>
+                            <dd>Diagnostic, réparation, relation client.</dd>
+                        </dl>
+                    </details>
+                </article>
+            </li>
+            <li class="tl-item reveal">
+                <span class="tl-date">Espagne</span>
+                <article class="box project">
+                    <h3>Spanred Telecomunicaciones</h3>
+                    <p>Outils internes et refonte web pour une entreprise de télécoms spécialisée dans l'hôtellerie de luxe.</p>
+                    <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                    <details>
+                        <summary>Voir le détail</summary>
+                        <dl>
+                            <dt>Contexte</dt><dd>Entreprise de télécommunications pour hôtels et propriétés de luxe.</dd>
+                            <dt>Objectifs</dt><dd class="todo">À compléter depuis le rapport de stage.</dd>
+                            <dt>Difficultés &amp; solutions</dt><dd class="todo">À compléter.</dd>
+                            <dt>Compétences</dt><dd>Travail en équipe, communication en espagnol, conception web, besoin client.</dd>
+                        </dl>
+                    </details>
+                </article>
+            </li>
+        </ol>
+    </div>
+</section>
+
 <!-- PROJETS -->
 <section id="projets">
     <div class="wrap">
-        <div class="sec-head reveal"><h2>Expériences &amp; projets</h2></div>
-        <div class="grid three">
+        <div class="sec-head reveal"><h2>Projets</h2></div>
+        <div class="grid two">
 
             <article class="box project reveal">
-                <p class="p-num">P/01 · Stage</p>
-                <h3>Spanred Telecomunicaciones</h3>
-                <p>Outils internes et refonte web pour une entreprise de télécoms spécialisée dans l'hôtellerie de luxe.</p>
-                <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-                <details>
-                    <summary>Voir le détail</summary>
-                    <dl>
-                        <dt>Contexte</dt><dd>Entreprise de télécommunications pour hôtels et propriétés de luxe.</dd>
-                        <dt>Objectifs</dt><dd class="todo">À compléter depuis le rapport de stage.</dd>
-                        <dt>Difficultés &amp; solutions</dt><dd class="todo">À compléter.</dd>
-                        <dt>Compétences</dt><dd>Travail en équipe, communication en espagnol, conception web, besoin client.</dd>
-                    </dl>
-                </details>
-            </article>
-
-            <article class="box project reveal">
-                <p class="p-num">P/02 · Stage</p>
-                <h3>Groupe Brunet</h3>
-                <p>Ambérieu-en-Bugey · du 13 janvier au 22 février 2025. Sauvegarde, scripts, sécurité Active Directory et réseau Wi-Fi.</p>
-                <ul class="tags"><li>NAS</li><li>PowerShell</li><li>Active Directory</li><li>Debian</li><li>UniFi</li><li>VirtualBox</li></ul>
-                <details>
-                    <summary>Voir le détail</summary>
-                    <dl>
-                        <dt>Contexte</dt>
-                        <dd>Groupe d'aménagement durable (17 filiales, environ 1 000 collaborateurs). Stage au siège, qui déménageait dans de nouveaux locaux.</dd>
-                        <dt>Missions</dt>
-                        <dd>Support quotidien des salariés (imprimantes, mots de passe oubliés). Sauvegarde hebdomadaire des fichiers sur NAS. Serveur Debian avec Samba4 pour le partage de fichiers. Machines virtuelles Kali Linux pour des tests de sécurité. Pilotes du serveur d'impression pour mettre les imprimantes en réseau. Configuration de portables et intégration au domaine. Déploiement de LAPS par GPO dans Active Directory.</dd>
-                        <dt>Scripts PowerShell</dt>
-                        <dd>Récupération de tous les groupes d'utilisateurs de l'Active Directory. Export en CSV des boîtes aux lettres Microsoft 365 : adresses principale et secondaires, nom d'utilisateur, capacité maximale.</dd>
-                        <dt>Problématique</dt>
-                        <dd>Avec le déménagement, il fallait une nouvelle infrastructure réseau : mal conçue, elle aurait bloqué l'activité de l'entreprise.</dd>
-                        <dt>Solution</dt>
-                        <dd>Montage de la baie de brassage (switchs, serveurs, NAS, pare-feu, onduleur, câblage structuré). Installation d'un routeur UniFi Dream Machine Pro et de deux bornes Wi-Fi U7 alimentées en PoE, adoptées depuis le tableau de bord. Création de deux Wi-Fi : un réseau professionnel pour les salariés et un réseau invité avec isolation des clients, limité à Internet.</dd>
-                        <dt>Compétences</dt>
-                        <dd>Administration Windows et Linux, Active Directory, scripting, réseau, sécurité.</dd>
-                    </dl>
-                </details>
-            </article>
-
-            <article class="box project reveal">
-                <p class="p-num">P/03 · Stage</p>
-                <h3>Boutique / SAV LDLC</h3>
-                <p>Lyon Vaise · du 29 avril au 24 mai 2024. Accueil, dépannage et montage d'ordinateurs.</p>
-                <ul class="tags"><li>Hardware</li><li>Watercooling</li><li>SAV</li><li>Relation client</li></ul>
-                <details>
-                    <summary>Voir le détail</summary>
-                    <dl>
-                        <dt>Contexte</dt>
-                        <dd>Boutique LDLC de Lyon Vaise : vente, service après-vente et atelier de montage de PC sur mesure.</dd>
-                        <dt>Missions</dt>
-                        <dd>Accueil clientèle et conseil en vente, gestion du stock. Montage de nombreux PC, dont des PC gamer avec watercooling. Configuration du BIOS / UEFI et installation de Windows. Au SAV : changement d'alimentations, ajout de RAM, passage HDD vers SSD, vidange d'un watercooling custom, nettoyage.</dd>
-                        <dt>Problématique</dt>
-                        <dd>Monter un PC gamer à 5 000 € commandé sur LDLC.com. Contraintes : des composants fragiles, et un client qui voulait conserver tous les emballages.</dd>
-                        <dt>Solution</dt>
-                        <dd>Choix des outils, puis montage dans l'ordre : processeur, RAM, SSD NVMe, pompe du watercooling, carte mère ATX dans le boîtier, radiateur et ventilateurs, alimentation modulaire et câblage, RGB, carte graphique. Test de démarrage, sans installer Windows à la demande du client.</dd>
-                        <dt>Compétences</dt>
-                        <dd>Assemblage, rigueur, respect de la demande client.</dd>
-                    </dl>
-                </details>
-            </article>
-
-            <article class="box project reveal">
-                <p class="p-num">P/04 · Stage</p>
-                <h3>Acta Micro</h3>
-                <p>Bourg-en-Bresse · du 28 novembre au 25 décembre 2023. Aide à la clientèle et dépannage.</p>
-                <ul class="tags"><li>Dépannage</li><li>SSD</li><li>Relation client</li></ul>
-                <details>
-                    <summary>Voir le détail</summary>
-                    <dl>
-                        <dt>Contexte</dt>
-                        <dd>Entreprise familiale de réparation d'ordinateurs, de téléphones et d'imprimantes, créée en 2001.</dd>
-                        <dt>Missions</dt>
-                        <dd>Aide à la clientèle et gestion de clients. Réparation de disques durs, désinfection d'un portable, mises à jour des pilotes et de Windows. Passage de HDD vers SSD avec clonage des données. Jusqu'à trois pannes gérées en même temps.</dd>
-                        <dt>Problématique</dt>
-                        <dd>Un ordinateur portable ne s'allumait plus après avoir reçu de l'eau sur le pavé numérique.</dd>
-                        <dt>Solution</dt>
-                        <dd>Démontage et diagnostic : la carte du bouton d'allumage était oxydée. Bain à ultrasons dans l'eau déminéralisée, puis dans l'alcool. Test avec le minimum de composants, puis remontage complet : le PC fonctionne.</dd>
-                        <dt>Compétences</dt>
-                        <dd>Diagnostic, méthode, autonomie : en fin de stage, réparation d'un PC sans aide.</dd>
-                    </dl>
-                </details>
-            </article>
-
-            <article class="box project reveal">
-                <p class="p-num">P/05 · Stage</p>
-                <h3>Les Indispensables</h3>
-                <p>Bourg-en-Bresse · du 20 mars au 7 avril 2023. Accueil, dépannage à domicile et réparation.</p>
-                <ul class="tags"><li>Dépannage</li><li>Hardware</li><li>Relation client</li></ul>
-                <details>
-                    <summary>Voir le détail</summary>
-                    <dl>
-                        <dt>Contexte</dt>
-                        <dd>Vente, réparation et dépannage informatique pour les particuliers et les professionnels.</dd>
-                        <dt>Missions</dt>
-                        <dd>Accueil et conseil en magasin. Interventions à domicile : installation d'ordinateurs et de périphériques. Diagnostic et réparation de pannes matérielles et logicielles.</dd>
-                        <dt>Problématique</dt>
-                        <dd>Une Xbox surchauffait : traces d'oxydation et manque de pâte thermique sur le processeur.</dd>
-                        <dt>Solution</dt>
-                        <dd>Démontage, nettoyage des zones oxydées, nouvelle pâte thermique. Tests de performance et vérification des ventilateurs : la console est rendue en état de marche.</dd>
-                        <dt>Compétences</dt>
-                        <dd>Diagnostic, réparation, relation client.</dd>
-                    </dl>
-                </details>
-            </article>
-
-            <article class="box project reveal">
-                <p class="p-num">P/06 · Cours</p>
+                <p class="p-num">Cours</p>
                 <h3>Lab PowerShell &amp; Active Directory</h3>
                 <p>Automatisation de la gestion d'un annuaire Active Directory en environnement virtualisé.</p>
                 <ul class="tags"><li>Windows Server</li><li>Active Directory</li><li>PowerShell</li></ul>
@@ -343,7 +358,7 @@
             </article>
 
             <article class="box project reveal">
-                <p class="p-num">P/07 · Perso</p>
+                <p class="p-num">Perso</p>
                 <h3>Accès connectés &amp; domotique</h3>
                 <p>Gestion de serrures connectées sur un ensemble de logements : configuration, droits d'accès, dépannage.</p>
                 <ul class="tags"><li>TTLock</li><li>INTHER-ACCESS</li></ul>

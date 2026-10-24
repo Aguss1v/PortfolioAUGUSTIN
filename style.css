@@ -124,7 +124,14 @@ p { margin-bottom: 1rem; }
 .grid { display: grid; gap: 1.25rem; margin-bottom: 1.25rem; }
 .grid.two { grid-template-columns: repeat(2, 1fr); }
 .grid.three { grid-template-columns: repeat(3, 1fr); }
-#projets .grid.three { grid-template-columns: repeat(2, 1fr); align-items: start; }
+#projets .grid.two { align-items: start; }
+
+/* ---------- Stages : frise chronologique ---------- */
+.timeline { list-style: none; position: relative; display: grid; gap: 1.25rem; }
+.timeline::before { content: ''; position: absolute; left: 6.5rem; top: 1rem; bottom: 1rem; width: 2px; margin-left: -1px; background: rgba(0, 0, 0, 0.1); }
+.tl-item { position: relative; display: grid; grid-template-columns: 5.5rem 1fr; column-gap: 2rem; align-items: start; }
+.tl-item::before { content: ''; position: absolute; left: 6.5rem; top: 2.1rem; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 5px var(--bg); }
+.tl-date { padding-top: 1.65rem; text-align: right; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.03em; }
 .todo, em.todo { color: var(--muted); font-style: italic; font-size: 0.9rem; }
 .todo::before { content: '✎ '; font-style: normal; }
 em.todo::before { content: ''; }
@@ -242,7 +249,11 @@ body.tour-on #chat-launch { display: none; }
 }
 @media (max-width: 860px) {
     body { font-size: 16px; }
-    .grid.two, .grid.three, #projets .grid.three { grid-template-columns: 1fr; }
+    .grid.two, .grid.three { grid-template-columns: 1fr; }
+    .timeline::before, .tl-item::before { left: 0.4rem; }
+    .tl-item { grid-template-columns: 1fr; padding-left: 1.8rem; }
+    .tl-item::before { top: 0.5rem; }
+    .tl-date { padding: 0 0 0.6rem; text-align: left; font-size: 1.15rem; }
     .menu-toggle { display: block; }
     nav {
         display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column;
