@@ -124,6 +124,7 @@ p { margin-bottom: 1rem; }
 .grid { display: grid; gap: 1.25rem; margin-bottom: 1.25rem; }
 .grid.two { grid-template-columns: repeat(2, 1fr); }
 .grid.three { grid-template-columns: repeat(3, 1fr); }
+.grid.one { grid-template-columns: minmax(0, 620px); }
 #projets .grid.two { align-items: start; }
 
 /* ---------- Stages : frise chronologique ---------- */
