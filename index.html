@@ -442,15 +442,16 @@
         <div class="grid two">
             <div class="box reveal">
                 <h3>Thème &amp; outils</h3>
-                <p class="todo">Thème de ma veille : à compléter (cybersécurité, IA, self-hosting…).</p>
-                <ul class="tags"><li>Flux RSS</li><li>Alertes Google</li><li>ANSSI</li><li>CERT-FR</li><li>LeMagIT</li></ul>
+                <p>Thème de ma veille : les agents IA pour l'entreprise. Ce qu'ils savent faire, comment on les déploie et comment on les sécurise dans une organisation.</p>
+                <p>Mes sources sont lues automatiquement chaque jour. Un modèle d'IA résume et note chaque article, puis je valide moi-même ceux qui sont publiés ici.</p>
+                <ul class="tags"><li>Flux RSS</li><li>CERT-FR (ANSSI)</li><li>LeMagIT</li><li>The Register</li><li>Ars Technica</li><li>GitHub</li><li>n8n</li></ul>
             </div>
-            <div class="box reveal todo-card">
+            <div class="box reveal">
                 <h3>Synthèses &amp; articles</h3>
-                <ul class="links">
-                    <li><a href="#">Synthèse n°1 — titre à compléter →</a></li>
-                    <li><a href="#">Synthèse n°2 — titre à compléter →</a></li>
-                </ul>
+                <p class="v-intro">Articles sélectionnés et validés. Le résumé est généré par une IA ; la validation est manuelle.</p>
+                <ul class="links v-liste" id="veille-liste"></ul>
+                <p class="v-statut" id="veille-vide" hidden>Les premiers articles validés apparaîtront ici.</p>
+                <p class="v-statut" id="veille-erreur" hidden>Impossible de charger les articles pour le moment.</p>
             </div>
         </div>
     </div>
@@ -518,5 +519,6 @@
 <script src="lang.js"></script>
 <script src="globe.js"></script>
 <script src="main.js"></script>
+<script src="veille/veille.js"></script>
 </body>
 </html>

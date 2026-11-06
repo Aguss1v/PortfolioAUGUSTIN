@@ -1092,16 +1092,21 @@ $('#replay').addEventListener('click', () => {
 });
 
 /* ===================== Animations au scroll & hero ===================== */
+let scrollReady = false;
+function revealEl(el) {
+    if (el.__rv) return;
+    el.__rv = true;
+    gsap.fromTo(el, { y: 40, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        onComplete: () => { gsap.set(el, { clearProps: 'transform,opacity' }); el.classList.add('ready'); }
+    });
+}
 function setupScroll() {
     if (!hasGsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('.reveal').forEach(el => {
-        gsap.fromTo(el, { y: 40, opacity: 0 }, {
-            y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 90%' },
-            onComplete: () => { gsap.set(el, { clearProps: 'transform,opacity' }); el.classList.add('ready'); }
-        });
-    });
+    scrollReady = true;
+    gsap.utils.toArray('.reveal').forEach(revealEl);
 }
 
 let roleIndex = 0;
@@ -1253,6 +1258,31 @@ function applyDom() {
     });
     root.lang = LANG;
 }
+// Contenu ajouté après le chargement (articles de la veille) : traduit les nouveaux textes
+// et applique l'animation .reveal, sans toucher aux textes déjà collectés.
+function addDom(el) {
+    if (!domNodes) return; // la première collecte prendra ces nœuds
+    const es = LANG === 'es';
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+        acceptNode: n => {
+            const p = n.parentElement;
+            if (!p || n.__fr !== undefined || !n.nodeValue.trim() || p.closest(SKIP_DOM)) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+        }
+    });
+    while (w.nextNode()) {
+        const n = w.currentNode;
+        n.__fr = n.nodeValue;
+        domNodes.push(n);
+        const tr = es ? I18.domEs[norm2(n.__fr)] : null;
+        if (tr) { const m = n.__fr.match(/^(\s*)[\s\S]*?(\s*)$/); n.nodeValue = m[1] + tr + m[2]; }
+    }
+}
+window.portfolioDynamic = function (el) {
+    if (!el) return;
+    addDom(el);
+    if (hasGsap && scrollReady) el.querySelectorAll('.reveal').forEach(revealEl);
+};
 function refreshUi() {
     setVoice(voiceOn);
     updMode();
