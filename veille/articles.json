@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "date": "2026-11-05",
+    "titre": "AWS Kiro aims to solve identity crisis by adding another identity: bot orchestrator",
+    "source": "The Register",
+    "url": "https://www.theregister.com/ai-and-ml/2026/11/05/aws-kiro-aims-to-solve-identity-crisis-by-adding-another-identity-bot-orchestrator/5307965",
+    "resume": "AWS adapte ses outils de développement agentiques Kiro pour permettre l'orchestration d'agents, avec l'ajout d'une identité dédiée aux bots orchestrateurs. L'article, publié par The Register, vise à résoudre des problèmes de gestion des identités liés aux agents IA. Le contenu détaillé n'étant pas fourni, l'analyse reste limitée au titre et à l'extrait.",
+    "tags": [
+      "AWS Kiro",
+      "orchestration d'agents",
+      "gestion des identités"
+    ]
+  }
+]
