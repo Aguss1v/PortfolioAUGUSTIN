@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-06",
+    "titre": "UK ministers seek powers to investigate when AI agents are let off the leash",
+    "source": "The Register",
+    "url": "https://www.theregister.com/ai-and-ml/2026/11/06/uk-ministers-seek-powers-to-investigate-when-ai-agents-are-let-off-the-leash/5307889",
+    "resume": "Des ministres britanniques cherchent à obtenir des pouvoirs d'enquête lorsque des agents IA échappent au contrôle de leurs opérateurs. Le projet de loi sur la cyber-sécurité et la résilience permettrait perquisitions, saisies et inspections dans ce cadre.",
+    "tags": [
+      "régulation IA",
+      "agents IA",
+      "cybersécurité"
+    ]
+  },
+  {
     "date": "2026-11-05",
     "titre": "AWS Kiro aims to solve identity crisis by adding another identity: bot orchestrator",
     "source": "The Register",
