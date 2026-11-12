@@ -24,6 +24,18 @@
     ]
   },
   {
+    "date": "2026-11-06",
+    "titre": "AIOps pour le réseau : les entreprises s’y font, à tâtons",
+    "source": "LeMagIT",
+    "url": "https://www.lemagit.fr/actualites/366653814/AIOps-pour-le-reseau-les-entreprises-sy-font-a-tatons",
+    "resume": "Un article de LeMagIT indique que les agents d'IA jouent surtout un rôle consultatif auprès des équipes NetOps, qui adoptent une approche « faire confiance, mais vérifier ». Les systèmes autonomes progressent néanmoins à mesure que la complexité des réseaux augmente.",
+    "tags": [
+      "AIOps",
+      "NetOps",
+      "agents IA"
+    ]
+  },
+  {
     "date": "2026-11-05",
     "titre": "AWS Kiro aims to solve identity crisis by adding another identity: bot orchestrator",
     "source": "The Register",
