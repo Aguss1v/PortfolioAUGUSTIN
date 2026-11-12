@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-11-06",
+    "titre": "Chainalysis says hackers stole credentials and tokens for all of its customers",
+    "source": "Ars Technica",
+    "url": "https://arstechnica.com/security/2026/11/chainalysis-says-hackers-stole-credentials-and-tokens-for-all-of-its-customers/",
+    "resume": "Chainalysis indique que des pirates ont dérobé des identifiants et des jetons d'accès appartenant à l'ensemble de ses clients. Selon l'entreprise, la « cyberattaque multifront » incluait des agents IA et une exfiltration de données par interception sur le chemin (on-path). L'article illustre le risque que des agents IA soient utilisés comme vecteur d'attaque.",
+    "tags": [
+      "sécurité",
+      "agents IA",
+      "identifiants"
+    ]
+  },
+  {
+    "date": "2026-11-06",
     "titre": "UK ministers seek powers to investigate when AI agents are let off the leash",
     "source": "The Register",
     "url": "https://www.theregister.com/ai-and-ml/2026/11/06/uk-ministers-seek-powers-to-investigate-when-ai-agents-are-let-off-the-leash/5307889",
