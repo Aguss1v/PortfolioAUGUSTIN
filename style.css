@@ -154,15 +154,89 @@ em.todo::before { content: ''; }
 .links a { color: var(--ink); font-weight: 500; }
 .links a:hover { color: var(--acc); }
 
-/* ---------- Veille : articles publiés ---------- */
-.v-intro, .v-statut { color: var(--muted); font-size: 0.95rem; }
-.v-liste { margin-top: 1rem; display: grid; gap: 1.1rem; }
-.v-item { margin-bottom: 0; padding-top: 1.1rem; border-top: 1px solid var(--line); }
-.v-item:first-child { padding-top: 0; border-top: 0; }
-.v-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.25rem; }
-.v-titre { display: inline-block; font-weight: 600; line-height: 1.35; }
-.v-resume { color: var(--muted); font-size: 0.95rem; margin-top: 0.3rem; }
-.v-item .tags { margin: 0.6rem 0 0; }
+/* ---------- Veille techno ---------- */
+#veille [hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+#veille a:focus-visible, #veille button:focus-visible, #veille input:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.v-h3 { font-size: 1.35rem; margin: 2.4rem 0 1rem; }
+.v-statut, .v-note { color: var(--muted); font-size: 0.95rem; }
+.v-note { margin-top: 1.1rem; }
+.v-intro, .v-articles { margin-bottom: 1.25rem; }
+.v-intro p { color: var(--muted); max-width: 60ch; }
+
+/* Chiffres clés */
+.v-chiffres { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.1rem; }
+.v-chiffres li { display: inline-flex; align-items: baseline; gap: 0.4rem; background: var(--pill); border-radius: 999px; padding: 0.5rem 1.1rem; font-size: 0.9rem; color: var(--muted); }
+.v-chiffres li:empty { display: none; }
+.v-chiffres .v-nb { font-size: 1.35rem; line-height: 1; }
+
+/* Frise « Comment ça marche » */
+.v-frise { list-style: none; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; counter-reset: etape; }
+.v-frise::before { content: ''; position: absolute; left: 12.5%; right: 12.5%; top: 30px; height: 2px; background: rgba(0, 0, 0, 0.12); }
+.v-frise li { position: relative; text-align: center; padding: 0 0.4rem; }
+.v-ico { position: relative; display: grid; place-items: center; width: 60px; height: 60px; margin: 0 auto 0.8rem; border-radius: 50%; background: #fff; color: var(--ink); box-shadow: 0 0 0 6px var(--bg), 0 2px 8px rgba(0, 0, 0, 0.08); }
+.v-frise li:last-child .v-ico { background: var(--ink); color: #fff; }
+.v-ico svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.v-frise h4 { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.25rem; }
+.v-frise p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; margin: 0; }
+
+/* Outils et sources : pastilles compactes */
+.v-pastilles { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.v-pastilles li { display: inline-flex; flex-direction: column; gap: 0.1rem; background: var(--surface); border-radius: 16px; padding: 0.7rem 1.05rem; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+.v-pastilles strong { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.02em; }
+.v-pastilles span { font-size: 0.82rem; color: var(--muted); }
+.v-sources li { flex-direction: row; align-items: center; gap: 0.7rem; }
+.v-type { font-style: normal; font-size: 0.72rem; font-weight: 600; background: var(--pill); border-radius: 999px; padding: 0.15rem 0.55rem; }
+
+/* Articles */
+.v-articles:hover { transform: none; }
+.v-compteur { font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem; }
+.v-nb { font-weight: 700; color: var(--ink); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.v-barre { display: grid; gap: 0.8rem; margin-bottom: 1.4rem; }
+#veille-recherche { width: 100%; max-width: 420px; font: inherit; font-size: 0.95rem; color: var(--ink); background: #fff; border: 1px solid rgba(0, 0, 0, 0.18); border-radius: 999px; padding: 0.6rem 1.1rem; }
+#veille-recherche::placeholder { color: var(--muted); }
+.v-filtres { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.v-chip { font: 500 0.82rem var(--sf); color: var(--ink); background: var(--pill); border: 0; border-radius: 999px; padding: 0.38rem 0.85rem; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.v-chip:hover { background: rgba(0, 0, 0, 0.1); }
+.v-chip[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.v-mois + .v-mois { margin-top: 1.6rem; }
+.v-moish { font-size: 0.85rem; font-weight: 600; text-transform: capitalize; color: var(--muted); letter-spacing: 0; padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
+.v-liste { list-style: none; }
+.v-item { border-bottom: 1px solid var(--line); animation: v-apparition 0.35s ease both; }
+.v-item:last-child { border-bottom: 0; }
+@keyframes v-apparition { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.v-h { font-size: inherit; margin: 0; font-weight: inherit; }
+.v-tete { position: relative; display: block; width: 100%; text-align: left; font: inherit; color: var(--ink); background: none; border: 0; cursor: pointer; padding: 1rem 2rem 1rem 0; }
+.v-tete::after { content: ''; position: absolute; right: 0.4rem; top: 1.45rem; width: 0.55rem; height: 0.55rem; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.2s; }
+.v-tete[aria-expanded="true"]::after { transform: rotate(-135deg); top: 1.75rem; }
+.v-tete:hover .v-titre { color: var(--acc); }
+.v-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.25rem; }
+.v-titre { display: block; font-weight: 600; line-height: 1.35; transition: color 0.2s; }
+.v-tagsligne { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.55rem; }
+.v-tag { font-size: 0.75rem; font-weight: 500; background: var(--pill); padding: 0.2rem 0.6rem; border-radius: 999px; }
+.v-corps { padding: 0 2rem 1.2rem 0; }
+.v-resume { color: var(--muted); font-size: 0.97rem; max-width: 70ch; white-space: pre-line; }
+.v-lire { font-size: 0.88rem; padding: 0.55rem 1.1rem; }
+.v-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.2rem; }
+.v-actions .btn { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
+
+@media (max-width: 860px) {
+    .v-frise { grid-template-columns: 1fr; gap: 1.1rem; }
+    .v-frise::before { left: 29px; right: auto; top: 30px; bottom: 30px; width: 2px; height: auto; }
+    .v-frise li { display: grid; grid-template-columns: 60px 1fr; column-gap: 1rem; text-align: left; align-items: center; padding: 0; }
+    .v-ico { grid-row: 1 / span 2; margin: 0; }
+    .v-frise h4 { align-self: end; }
+    .v-frise p { align-self: start; }
+}
+@media (max-width: 560px) {
+    #veille-recherche { max-width: none; }
+    .v-tete { padding-right: 1.6rem; }
+    .v-corps { padding-right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .v-item { animation: none; }
+    .v-tete::after, .v-chip, .v-titre { transition: none; }
+}
 
 .p-num { font-size: 0.8rem; font-weight: 600; color: var(--acc); margin-bottom: 0.35rem; }
 .project p { color: var(--muted); font-size: 0.95rem; }

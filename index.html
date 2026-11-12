@@ -438,22 +438,83 @@
 <!-- VEILLE -->
 <section id="veille">
     <div class="wrap">
-        <div class="sec-head reveal"><h2>Veille techno</h2></div>
-        <div class="grid two">
-            <div class="box reveal">
-                <h3>Thème &amp; outils</h3>
-                <p>Thème de ma veille : les agents IA pour l'entreprise. Ce qu'ils savent faire, comment on les déploie et comment on les sécurise dans une organisation.</p>
-                <p>Mes sources sont lues automatiquement chaque jour. Un modèle d'IA résume et note chaque article, puis je valide moi-même ceux qui sont publiés ici.</p>
-                <ul class="tags"><li>Flux RSS</li><li>CERT-FR (ANSSI)</li><li>LeMagIT</li><li>The Register</li><li>Ars Technica</li><li>GitHub</li><li>n8n</li></ul>
+        <div class="sec-head reveal"><h2>Veille technologique</h2></div>
+
+        <div class="box reveal v-intro">
+            <h3>Agents IA pour l'entreprise</h3>
+            <p>Je suis chaque jour l'actualité des agents IA en entreprise : un modèle d'IA trie les articles, je valide ceux qui sont publiés.</p>
+            <ul class="v-chiffres">
+                <li id="veille-stat"></li>
+                <li><strong class="v-nb">6</strong> <span>sources surveillées</span></li>
+                <li><strong class="v-nb">2</strong> <span>sélections par semaine</span></li>
+            </ul>
+        </div>
+
+        <div class="box reveal v-articles" id="veille-articles">
+            <h3>Les articles</h3>
+            <p class="v-compteur" id="veille-compteur" aria-live="polite"></p>
+            <div class="v-barre" id="veille-barre" hidden>
+                <label class="sr-only" for="veille-recherche">Rechercher dans les articles</label>
+                <input type="search" id="veille-recherche" placeholder="Rechercher un mot…" maxlength="60" autocomplete="off">
+                <div class="v-filtres" id="veille-sources" role="group" aria-label="Filtrer par source"></div>
+                <div class="v-filtres" id="veille-tags" role="group" aria-label="Filtrer par mot-clé"></div>
             </div>
-            <div class="box reveal">
-                <h3>Synthèses &amp; articles</h3>
-                <p class="v-intro">Articles sélectionnés et validés. Le résumé est généré par une IA ; la validation est manuelle.</p>
-                <ul class="links v-liste" id="veille-liste"></ul>
-                <p class="v-statut" id="veille-vide" hidden>Les premiers articles validés apparaîtront ici.</p>
-                <p class="v-statut" id="veille-erreur" hidden>Impossible de charger les articles pour le moment.</p>
+            <div id="veille-liste"></div>
+            <p class="v-statut" id="veille-vide" hidden>Aucun article publié pour le moment.</p>
+            <p class="v-statut" id="veille-aucun" hidden>Aucun article pour ce filtre.</p>
+            <p class="v-statut" id="veille-erreur" hidden>Impossible de charger les articles pour le moment.</p>
+            <div class="v-actions">
+                <button type="button" class="btn btn-o" id="veille-plus" hidden>Afficher plus</button>
+                <button type="button" class="btn btn-o" id="veille-reset" hidden>Réinitialiser les filtres</button>
             </div>
         </div>
+
+        <h3 class="v-h3 reveal">Comment ça marche</h3>
+        <ol class="v-frise reveal">
+            <li>
+                <span class="v-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5"/></svg></span>
+                <h4>Collecte RSS</h4>
+                <p>Six sources lues chaque jour à 07:00.</p>
+            </li>
+            <li>
+                <span class="v-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/></svg></span>
+                <h4>Analyse par IA</h4>
+                <p>Résumé en français, note sur 10 et mots-clés.</p>
+            </li>
+            <li>
+                <span class="v-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span>
+                <h4>Validation manuelle</h4>
+                <p>Rien n'est publié sans mon accord.</p>
+            </li>
+            <li>
+                <span class="v-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></span>
+                <h4>Publication</h4>
+                <p>Les articles validés apparaissent ici.</p>
+            </li>
+        </ol>
+        <p class="v-note reveal">Accès à la validation restreint ; résumés générés par IA, puis relus.</p>
+
+        <h3 class="v-h3 reveal">Mes outils</h3>
+        <ul class="v-pastilles reveal">
+            <li><strong>n8n</strong><span>Orchestration de la chaîne</span></li>
+            <li><strong>Docker</strong><span>Conteneurs isolés</span></li>
+            <li><strong>Proxmox et VM Debian</strong><span>Machine virtuelle hôte</span></li>
+            <li><strong>Claude Haiku</strong><span>Résumé et note par IA</span></li>
+            <li><strong>Claude Code et MCP</strong><span>Construction des workflows</span></li>
+            <li><strong>nginx</strong><span>Page de validation protégée</span></li>
+            <li><strong>GitHub Pages</strong><span>Publication du site</span></li>
+            <li><strong>Flux RSS</strong><span>Réception automatique des articles</span></li>
+        </ul>
+
+        <h3 class="v-h3 reveal">Les 6 sources surveillées</h3>
+        <ul class="v-pastilles v-sources reveal">
+            <li><strong>CERT-FR (ANSSI)</strong><em class="v-type">Officiel</em></li>
+            <li><strong>LeMagIT</strong><em class="v-type">Presse FR</em></li>
+            <li><strong>The Register</strong><em class="v-type">Presse EN</em></li>
+            <li><strong>Ars Technica</strong><em class="v-type">Presse EN</em></li>
+            <li><strong>GitHub : serveurs MCP</strong><em class="v-type">Code</em></li>
+            <li><strong>GitHub : n8n</strong><em class="v-type">Code</em></li>
+        </ul>
     </div>
 </section>
 
