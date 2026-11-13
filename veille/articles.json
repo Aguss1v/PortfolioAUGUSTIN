@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-11",
+    "titre": "OSSSAAAMAAAA",
+    "source": "GitHub modelcontextprotocol/servers",
+    "url": "https://github.com/modelcontextprotocol/servers/releases/tag/v2.4.0",
+    "resume": "La version v2.4.0 des serveurs MCP officiels de modelcontextprotocol corrige six vulnérabilités dans trois serveurs, avec des mises à jour recommandées pour server-filesystem (2.3.0), mcp-server-git et mcp-server-fetch (2026.11.11). Les correctifs visent notamment des attaques par substitution de répertoire en lien symbolique (race condition) qui pouvaient permettre de lire des fichiers hors des répertoires autorisés, ainsi que l'exécution de programmes via la configuration Git d'un dépôt non fiable.",
+    "tags": [
+      "MCP",
+      "sécurité",
+      "vulnérabilités"
+    ]
+  },
+  {
     "date": "2026-11-06",
     "titre": "Chainalysis says hackers stole credentials and tokens for all of its customers",
     "source": "Ars Technica",
