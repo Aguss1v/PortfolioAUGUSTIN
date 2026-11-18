@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-13",
+    "titre": "Anthropic décline Claude Managed Agents en cloud privé et sur site",
+    "source": "LeMagIT",
+    "url": "https://www.lemagit.fr/actualites/366654740/Anthropic-decline-Claude-Managed-Agents-en-cloud-prive-et-sur-site",
+    "resume": "Anthropic propose désormais à ses clients de déployer sa plateforme d'exécution d'agents IA, Claude Managed Agents, sur leur cloud privé ou sur site, sans installer ses modèles de langage eux-mêmes. Cette option accroît le contrôle sur l'architecture, mais transfère aussi davantage de responsabilités en matière de cybersécurité à l'entreprise.",
+    "tags": [
+      "agents IA",
+      "déploiement on-premise",
+      "cybersécurité"
+    ]
+  },
+  {
     "date": "2026-11-11",
     "titre": "OSSSAAAMAAAA",
     "source": "GitHub modelcontextprotocol/servers",
